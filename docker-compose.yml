@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: sebcontents/client
+    restart: "always"
+    ports:
+      - "8080:80"
+    container_name: sprint-client
+
+  spring:
+    image: 0xnsky/server-spring
+    restart: "always"
+    ports:
+      - "5000:3000"
+    container_name: sprint-server
+    volumes:
+      - "./volumefolder:/data"
+
+  mysql:
+    image: amd64/mysql
+    restart: "always"
+    ports:
+      - "3307:3306"
+    container_name: sprint-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: loko1124
+      MYSQL_DATABASE: DOCKER_WITH_MYSQL
+      MYSQL_USER: test
+      MYSQL_PASSWORD: loko1124
